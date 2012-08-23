@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>multitacz</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<style type="text/css">
+
+		body {
+			margin: 0;
+			padding: 0;
+		}
+
+		#stage {
+			background: #eee;
+			border: 1px solid #ccc;
+		}
+
+	</style>
+</head>
+<body>
+
+	<canvas id="stage" width="800px" height="600px"></canvas>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/libs/hydra.js"></script>
+	<script src="/libs/doodle.js"></script>
+	<script>
+		// var socket = io.connect('http://192.168.1.101:3000');
+		var socket = io.connect('http://c73-95.icpnet.pl:3000');
+		// var socket = io.connect('http://POZMWCOE24316.emea.roche.com:3000'),
+			axisX = 0;
+
+		Doodle.init( { id: 'stage' } );
+
+		socket.on( 'connect', function () {
+
+		 	Hydra( 'window' )
+		 		.listenTo( 'devicemotion', function ( event ){
+
+		 		})
+		 	;
+
+			socket.on( 'deviceOnMove', function ( data ) {
+
+				axisX = (data.x > 5) ? 1 : -1;
+				axisY = (data.y > 5) ? -1 : 1;
+
+				Doodle.draw( axisX, axisY );
+			});
+
+		 });
+
+	</script>
+
+</body>
+</html>
