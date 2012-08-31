@@ -26,10 +26,8 @@
 	<script src="/libs/hydra.js"></script>
 	<script src="/libs/doodle.js"></script>
 	<script>
-		// var socket = io.connect('http://192.168.1.101:3000');
-		var socket = io.connect('http://c73-95.icpnet.pl:3000');
-		// var socket = io.connect('http://POZMWCOE24316.emea.roche.com:3000'),
-			axisX = 0;
+
+		var socket = io.connect( '{{connection.host}}:{{connection.port}}' );
 
 		Doodle.init( { id: 'stage' } );
 
@@ -43,8 +41,8 @@
 
 			socket.on( 'deviceOnMove', function ( data ) {
 
-				axisX = (data.x > 5) ? 1 : -1;
-				axisY = (data.y > 5) ? -1 : 1;
+				axisX = (data.x > 1) ? 2 : -2;
+				axisY = (data.y > 1) ? -2 : 2;
 
 				Doodle.draw( axisX, axisY );
 			});

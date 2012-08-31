@@ -16,6 +16,7 @@ app.configure(function(){
 	app.set('port', process.env.PORT || 3000);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'mustache');
+	app.set('host', '192.168.1.100');
 
 	app.engine('mustache', cons.mustache);
 
@@ -31,25 +32,30 @@ app.configure('development', function(){
 	app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
-
-app.get('/multitacz', function(req, res){
+app.get('/', function(req, res){
 
 	res.set('Content-Type', 'text/html; charset=utf-8');
 
-	res.render('multitacz');
+	res.render('multitacz',
+		{ 'connection':
+			{
+				'host': app.get( 'host' ),
+				'port': app.get( 'port' )
+			}
+		}
+	);
+
 });
 
-var httpServer = http.createServer(app).listen(app.get('port'), '192.168.1.101', function(){
-// var httpServer = http.createServer(app).listen(app.get('port'), 'POZMWCOE24316.emea.roche.com', function(){
-	console.log("Express server listening on port " + app.get('port'));
+var httpServer = http.createServer(app).listen(app.get('port'), app.get( 'host' ), function(){
+
+	console.log("Express server listening on: " + app.get( 'host' ) +':'+ app.get('port'));
+
 });
 
 var websocket = io.listen(httpServer);
 
 websocket.sockets.on('connection', function (socket) {
-
-	// socket.broadcast.emit('te', 'te');
 
 	socket.on('event_data', function (data) {
 
