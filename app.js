@@ -8,15 +8,16 @@ var express = require('express')
 	, http = require('http')
 	, path = require('path')
 	, cons = require('consolidate')
-	, io = require('socket.io');
+	, io = require('socket.io')
+	, conf = require('./config.js');
 
 var app = express();
 
 app.configure(function(){
-	app.set('port', process.env.PORT || 3000);
+	app.set('port', conf.port || process.env.PORT || 3000);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'mustache');
-	app.set('host', '192.168.1.100');
+	app.set('host', conf.host);
 
 	app.engine('mustache', cons.mustache);
 
