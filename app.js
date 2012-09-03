@@ -8,23 +8,24 @@ var express = require('express')
 	, http = require('http')
 	, path = require('path')
 	, cons = require('consolidate')
-	, io = require('socket.io');
+	, io = require('socket.io')
+	, conf = require('./config.js');
 
 var app = express();
 
 app.configure(function(){
-	app.set('port', process.env.PORT || 3000);
+	app.set('port', conf.port || process.env.PORT || 3000);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'mustache');
-	app.set('host', '192.168.1.100');
+	app.set('host', conf.host);
 
 	app.engine('mustache', cons.mustache);
 
 	app.use(express.favicon());
-	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(app.router);
+	app.use(express.logger('dev'));
 	app.use(express.static(path.join(__dirname, 'public')));
 });
 
@@ -36,30 +37,29 @@ app.get('/', function(req, res){
 
 	res.set('Content-Type', 'text/html; charset=utf-8');
 
-	res.render('multitacz',
-		{ 'connection':
-			{
-				'host': app.get( 'host' ),
-				'port': app.get( 'port' )
-			}
+	res.render('multitacz', {
+	'connection': {
+			'host': app.get('host'),
+			'port': app.get('port')
 		}
-	);
+	});
 
 });
 
-var httpServer = http.createServer(app).listen(app.get('port'), app.get( 'host' ), function(){
+var httpServer = http.createServer(app).listen(app.get('port'), app.get('host'), function (){
 
-	console.log("Express server listening on: " + app.get( 'host' ) +':'+ app.get('port'));
+	console.log("Express server listening on: " + app.get('host') +':'+ app.get('port'));
 
 });
 
-var websocket = io.listen(httpServer);
+var websocket = io.listen(httpServer, {log: false});
 
 websocket.sockets.on('connection', function (socket) {
 
 	socket.on('event_data', function (data) {
 
-		socket.broadcast.emit('deviceOnMove', data);
-
+		console.log('deviceOnMove: ', data);
+		socket.broadcast.emit( 'deviceOnMove', data);
+ 
 	});
 });
