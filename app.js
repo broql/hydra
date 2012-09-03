@@ -22,10 +22,10 @@ app.configure(function(){
 	app.engine('mustache', cons.mustache);
 
 	app.use(express.favicon());
-	app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(app.router);
+	app.use(express.logger('dev'));
 	app.use(express.static(path.join(__dirname, 'public')));
 });
 
@@ -37,30 +37,29 @@ app.get('/', function(req, res){
 
 	res.set('Content-Type', 'text/html; charset=utf-8');
 
-	res.render('multitacz',
-		{ 'connection':
-			{
-				'host': app.get( 'host' ),
-				'port': app.get( 'port' )
-			}
+	res.render('multitacz', {
+	'connection': {
+			'host': app.get('host'),
+			'port': app.get('port')
 		}
-	);
+	});
 
 });
 
-var httpServer = http.createServer(app).listen(app.get('port'), app.get( 'host' ), function(){
+var httpServer = http.createServer(app).listen(app.get('port'), app.get('host'), function (){
 
-	console.log("Express server listening on: " + app.get( 'host' ) +':'+ app.get('port'));
+	console.log("Express server listening on: " + app.get('host') +':'+ app.get('port'));
 
 });
 
-var websocket = io.listen(httpServer);
+var websocket = io.listen(httpServer, {log: false});
 
 websocket.sockets.on('connection', function (socket) {
 
 	socket.on('event_data', function (data) {
 
-		socket.broadcast.emit('deviceOnMove', data);
-
+		console.log('deviceOnMove: ', data);
+		socket.broadcast.emit( 'deviceOnMove', data);
+ 
 	});
 });

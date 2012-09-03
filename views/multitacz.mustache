@@ -40,11 +40,7 @@
 		 	;
 
 			socket.on( 'deviceOnMove', function ( data ) {
-
-				axisX = (data.x > 1) ? 2 : -2;
-				axisY = (data.y > 1) ? -2 : 2;
-
-				Doodle.draw( axisX, axisY );
+				Doodle.draw( data );
 			});
 
 		 });

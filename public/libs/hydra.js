@@ -1,8 +1,9 @@
 ( function(){
 
 	Hydra = function( selector ) {
-
+		
 		return new Hydra.prototype.init( selector );
+
 	};
 
 	Hydra.prototype = {
@@ -19,27 +20,38 @@
 		listenTo: function( eventType, callback ) {
 
 			this['collection'].addEventListener(eventType, function(){
+				
 
-				try {
-					var data = {
-						x: event.accelerationIncludingGravity.x,
-						y: event.accelerationIncludingGravity.y,
-						z: event.accelerationIncludingGravity.z
-					};
+				if( eventType === 'devicemotion' || eventType === 'deviceOnMove' ) {
 
-					socket.emit( 'event_data', data );
+					try {
+						
+						var data = {
+							x: Math.round((event.accelerationIncludingGravity.x * 1)),
+							y: Math.round((event.accelerationIncludingGravity.y * 1)),
+							z: Math.round((event.accelerationIncludingGravity.z * 1)),
+							alpha: Math.round(event.rotationRate.alpha),
+							beta: Math.round(event.rotationRate.beta),
+							gamma: Math.round(event.rotationRate.gamma)
+						};
 
-					callback();
-				}
-				catch( e ) {
-					console.log( e );
+						socket.emit( 'event_data', data );
+
+						callback();
+
+					} catch( e ) {
+						
+						console.log( e );
+
+					}
+
 				}
 
 			}, false);
 
 			return this;
 		}
-	}
+	};
 
 	Hydra.prototype.init.prototype = Hydra.prototype;
 
