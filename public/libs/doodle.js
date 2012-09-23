@@ -3,25 +3,45 @@ var Doodle = (function () {
 	var canvas,
 		ctx,
 		x = 300,
-		y = 300;
+		y = 300,
+		axisX = 1,
+		axisY = 0,
+		color = '#000';
 
 	return {
 
-		init: function(options) {
+		init: function( options ) {
 			canvas = document.getElementById( options.id ),
 			ctx = canvas.getContext( '2d' );
 		},
 
-		draw: function(data) {
+		draw: function( data ) {
+
+			x = x + axisX;
+			y = y + axisY;
+
+			ctx.strokeStyle = color;
+			ctx.lineTo( x , y );
+			ctx.stroke();
+
+			try {
+
+				setTimeout(function() {
+
+					webkitRequestAnimationFrame( function( ){ Doodle.draw(); } );
+
+				}, 1000 / 15 );
+
+			}
+			catch ( e ) { };
+		},
+
+		changeDirection: function( data ) {
 
 			var move = moveDetection( data );
 
-			x = x + move.x;
-			y = y + move.y;
-
-			ctx.strokeStyle = move.color;
-			ctx.lineTo( x , y );
-			ctx.stroke();
+			axisX = move.x;
+			axisY = move.y;
 		}
 	};
 

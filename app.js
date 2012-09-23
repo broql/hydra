@@ -35,9 +35,26 @@ app.configure('development', function(){
 
 app.get('/', function(req, res){
 
+	console.log( req.headers['user-agent'] );
+
 	res.set('Content-Type', 'text/html; charset=utf-8');
 
 	res.render('multitacz', {
+	'connection': {
+			'host': app.get('host'),
+			'port': app.get('port')
+		}
+	});
+
+});
+
+app.get( '/reveal', function( req, res ){
+
+	console.log( req.headers['user-agent'] );
+
+	res.set('Content-Type', 'text/html; charset=utf-8');
+
+	res.render('reveal', {
 	'connection': {
 			'host': app.get('host'),
 			'port': app.get('port')
@@ -52,7 +69,7 @@ var httpServer = http.createServer(app).listen(app.get('port'), app.get('host'),
 
 });
 
-var websocket = io.listen(httpServer, {log: false});
+var websocket = io.listen( httpServer, {'log': false, 'transports': ['websocket']} );
 
 websocket.sockets.on('connection', function (socket) {
 
@@ -60,6 +77,6 @@ websocket.sockets.on('connection', function (socket) {
 
 		console.log('deviceOnMove: ', data);
 		socket.broadcast.emit( 'deviceOnMove', data);
- 
+
 	});
 });

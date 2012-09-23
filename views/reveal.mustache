@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script>
+			// If the query includes 'print-pdf' we'll use the PDF print sheet
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+
+				<section>
+					<h1>JavaScript: the final frontier</h1>
+					<h3>What's so cool about it?</h3>
+				</section>
+
+				<section>
+
+					<h1>Who am I?</h1>
+
+					<h3 class="fragment">Adrian Makowski</h3>
+					<h3 class="fragment">front-end developer</h3>
+					<h3 class="fragment">2 years at Roche</h3>
+
+				</section>
+
+				<section>
+
+					<h1>Let's get to it!</h1>
+
+				</section>
+
+				<section>
+					<h2>(ECMAScript)</h2>
+					<h3>"The World's Most Misunderstood Programming Language"</h3>
+					<img src="img/tapmadl.jpg" />
+				</section>
+
+				<section>
+
+					<section>
+						<h1>Three musketeers</h1>
+
+						<img src="img/musketeers.jpg" />
+					</section>
+
+					<section>
+						<h2>Brendan Eich</h2>
+
+						<blockquote>
+							Plus, JS had to be done in ten days or something worse than JS would have happened.
+						</blockquote>
+
+						<img src="img/brendaneich.jpg" />
+					</section>
+
+					<section>
+
+						<h2>Profile</h2>
+
+						<ol>
+							<li class="fragment"><strong>Creator of the JavaScript scripting language</strong></li>
+							<li class="fragment">April 1995 - Netscape</li>
+							<li class="fragment">August 1996 - JS stable release</li>
+							<li class="fragment">1998 - chief architect at Mozilla</li>
+							<li class="fragment"><strong>August 2005 - CTO of Mozilla</strong></li>
+						</ol>
+
+					</section>
+
+					<section>
+						<h2>Douglas Crockford</h2>
+
+						<blockquote>
+							Warning: JSLint will hurt your feelings.
+						</blockquote>
+
+						<img src="img/douglascrockford.jpg" />
+					</section>
+
+					<section>
+
+						<h3>Profile</h3>
+
+						<ol>
+							<li class="fragment">E (programming language) contributor</li>
+							<li class="fragment">July 2006 - JSON RFC (4627)</li>
+							<li class="fragment">The Good Parts</li>
+							<li class="fragment">JSLint</li>
+							<li class="fragment">
+								<a href="https://twitter.com/CrockfordFacts">https://twitter.com/CrockfordFacts</a>
+								<blockquote>Douglas.crockford(water); returns wine.</blockquote>
+							</li>
+							<li class="fragment">Github flamer ;]</li>
+						</ol>
+
+					</section>
+
+					<section>
+						<h2>John Resig</h2>
+
+						<img src="img/johnresig.png" />
+					</section>
+
+					<section>
+
+						<h3>Profile</h3>
+
+						<ol>
+							<li class="fragment">Creator and lead developer of the jQuery</li>
+							<li class="fragment">Worked on TestSwarm for Mozilla</li>
+							<li class="fragment">Works at Khan Academy</li>
+							<li class="fragment">Secrets of the JavaScript Ninja</li>
+							<li class="fragment">Blogger at ejohn.org</li>
+						</ol>
+
+					</section>
+
+				</section>
+
+
+				<section>
+
+					<section>
+						<h1>Modern era Javascript</h1>
+						<h3>Man who made it possible</h3>
+					</section>
+
+					<section>
+
+						<h2>Definitely not him</h2>
+
+						<img src="img/terrycrews.jpg" />
+					</section>
+
+					<section>
+						<h2>Ryan Dahl</h2>
+
+						<blockquote>
+							I want programming computers to be like coloring with crayons and playing with duplo blocks.
+						</blockquote>
+
+						<img src="img/ryandahl.jpg" />
+					</section>
+
+					<section>
+
+						<h3>Nodejs</h3>
+
+						<blockquote>A platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.</blockquote>
+
+					</section>
+
+					<section>
+
+						<h3>Example of http server</h3>
+
+					<pre><code contenteditable>
+var http = require('http');
+
+http.createServer(function (req, res) {
+
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+
+  res.end('Hello World\n');
+
+}).listen(1337, '127.0.0.1');
+
+console.log('Server running at http://127.0.0.1:1337/');
+					</code></pre>
+
+					</section>
+
+					<section>
+
+						<h3>Live example: wordsquared</h3>
+
+						<iframe src="http://wordsquared.com/" scrolling="no" style="width: 1000px; height: 500px;"></iframe>
+
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+
+						<h2>What node made easy?</h2>
+
+						<h3>More examples</h3>
+
+					</section>
+
+					<section>
+
+						<h2>Robotics! (arduino hardware)</h2>
+
+						<iframe width="560" height="315" src="http://www.youtube.com/embed/38Gq1odxaPM" frameborder="0" allowfullscreen></iframe>
+
+					</section>
+
+					<section>
+
+						<h2>Online coding</h2>
+
+						<iframe width="1000" height="500" src="https://c9.io/broql" frameborder="0" allowfullscreen></iframe>
+
+					</section>
+
+					<section>
+
+						<h2>Multiplayer games</h2>
+
+						<a href="http://www.haxball.com/" target="_blank">http://www.haxball.com/</a>
+
+					</section>
+
+					<section>
+
+						<h2>Online sharing</h2>
+
+						<iframe width="1000" height="500" src="http://clipboard.com" frameborder="0" allowfullscreen></iframe>
+
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+
+						<h1>Future of JavaScript</h1>
+
+					</section>
+
+					<section>
+
+						<h2>Glossary</h2>
+
+						<ul>
+							<li class="fragment"><strong>ECMAScript versus JavaScript</strong></li>
+							<li class="fragment">ECMA-262</li>
+							<li class="fragment">ECMAScript 5 (ECMA 262 5th edition)</li>
+							<li class="fragment">ECMAScript.next (planned for 2013)</li>
+							<li class="fragment">Ecma’s Technical Committee 39 (December 2009)</li>
+						</ul>
+
+					</section>
+
+					<section>
+
+						<h2>Confused yet?</h2>
+
+						<img src="img/orly.jpg" />
+
+					</section>
+
+					<section>
+
+						<h2>More definitions ;]</h2>
+
+						<ul style="font-size: 30px; line-height: 34px;">
+							<li><strong>ECMAScript.next</strong>
+								<blockquote>
+									The code name of the next version of ECMAScript. Using that term implies that one is discussing features that may or may not be added to the final standard.
+								</blockquote>
+							</li>
+							<li><strong>ECMAScript 6</strong>
+								<blockquote>
+									The actual (final) name of ECMAScript.next. Using that term implies that one is talking about features that will definitely be in the standard.
+								</blockquote>
+							</li>
+							<li><strong>ECMAScript Harmony</strong>
+								<blockquote>
+									Superset of ECMAScript.next and means “features coming up after ECMAScript 5”. Those features may be in ECMAScript.next.
+								</blockquote>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+
+					<section>
+						<h1>Lots of win!</h1>
+
+						<img src="img/win.jpg" />
+					</section>
+
+					<section>
+						<h1>Summing up ;]</h1>
+
+						<h3>JS is..</h3>
+
+						<ul>
+							<li class="fragment">fast</li>
+							<li class="fragment">small</li>
+							<li class="fragment">has nice learning curve</li>
+							<li class="fragment">works practically everywhere</li>
+							<li class="fragment">have bright and shiny future</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+
+					<h2>Thank you for listening!</h2>
+
+					<img src="img/thankyou.jpg" />
+
+				</section>
+
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+
+				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+				]
+			});
+
+		</script>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/libs/hydra.js"></script>
+
+		<script type="text/javascript">
+
+			var socket = io.connect( '{{connection.host}}:{{connection.port}}' ),
+					counter = 0;
+
+			socket.on( 'connect', function () {
+
+			 	Hydra( 'window' )
+			 		.listenTo( 'devicemotion', function ( event ){
+
+			 		})
+			 	;
+
+				socket.on( 'deviceOnMove', function ( data ) {
+
+						var obj = Hydra( 'window' ).moveDetection( data );
+
+						if( obj.x > 0 && obj.softness > 5 ){
+
+							if( counter > 10 ){
+								Reveal.navigateNext();
+								counter = 0;
+							}
+							counter++;
+						}
+
+						if( obj.x < 0 && obj.softness < -5 ){
+							if( counter > 10 ){
+								Reveal.navigatePrev();
+								counter = 0;
+							}
+							counter++;
+						}
+
+				});
+
+			 });
+
+		</script>
+
+	</body>
+</html>

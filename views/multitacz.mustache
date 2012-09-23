@@ -29,7 +29,7 @@
 
 		var socket = io.connect( '{{connection.host}}:{{connection.port}}' );
 
-		Doodle.init( { id: 'stage' } );
+		// Doodle.init( { id: 'stage' } );
 
 		socket.on( 'connect', function () {
 
@@ -39,8 +39,16 @@
 		 		})
 		 	;
 
+			// Doodle.draw();
+
 			socket.on( 'deviceOnMove', function ( data ) {
-				Doodle.draw( data );
+
+				// Doodle.changeDirection( data );
+
+				// var obj = Hydra.moveDetection( data );
+
+				// console.log( obj )
+
 			});
 
 		 });
